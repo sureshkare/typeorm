@@ -7,8 +7,31 @@ const app = express();
 app.use(express.json());
 const port = 3005;
 
-app.get('/', (req,res) => {
-    console.log("Hello from express");
+app.get('/', async (req,res) => {
+
+    const userRepo = AppDataSource.getRepository(User);
+
+     //find All the records
+    //const allRecords = await userRepo.find();
+
+    //delete
+   // await userRepo.delete(2);
+
+   //insert
+
+//    let user:User = new User();
+//    user.email = "suresh@dskfj.com";
+//    user.firstName = "suri";
+//    user.lastName = "ka";
+
+//    const userInserted = await userRepo.save(user);\
+
+// await userRepo.update(3, {firstName: "name updated", lastName: "sur updated", email: "updated@gmai.com"});
+
+//filter resource
+const record = await userRepo.findOne({where: {firstName: "suresh"}});
+
+    res.json(record);
 });
 
 const AppDataSource = new DataSource({
